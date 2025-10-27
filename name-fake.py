@@ -1,0 +1,118 @@
+from typing import List
+def set_and_sort(arr: list[str]) -> list[str]:
+    arr_set = set(arr)
+    # 先按长度排序,长度相同的按字母排序
+    arr = sorted(arr_set, key=lambda x: (len(x), x))
+    return arr
+
+def format_sql(arr: List[str], indent="        "):
+    """将 Python 列表格式化为 SQL ARRAY 字面量"""
+    arr = list(arr)
+    if not arr:
+        return "ARRAY[]"
+    
+    lines = []
+    line = indent + "'{}'".format(arr[0])
+    for name in arr[1:]:
+        if len(line) + len(name) + 4 > 60:
+            lines.append(line + ",")
+            line = indent + "'{}'".format(name)
+        else:
+            line += ", '{}'".format(name)
+    lines.append(line)
+    return "ARRAY[\n" + "\n".join(lines) + "\n    ]"
+
+surnames = [
+    '丁', '万', '丛', '乌', '乐', '乔', '于', '任', '何', '余', '侯', '倪',
+    '傅', '党', '全', '兰', '关', '冉', '农', '冯', '冷', '冼', '凌', '刁',
+    '刘', '劳', '包', '华', '单', '南', '卜', '卞', '卢', '卫', '双', '古',
+    '史', '叶', '司', '向', '吕', '吴', '吾', '周', '和', '唐', '国', '夏',
+    '奚', '姚', '姜', '姬', '娄', '孔', '孙', '孟', '季', '宁', '安', '宋',
+    '宓', '宫', '容', '宿', '寇', '寿', '封', '尚', '尹', '屈', '屠', '山',
+    '岑', '崔', '巩', '巫', '巴', '帅', '师', '席', '常', '平', '庞', '康',
+    '廉', '廖', '张', '强', '彭', '律', '徐', '成', '戚', '戴', '敖', '文',
+    '斯', '方', '施', '时', '明', '易', '景', '曲', '曹', '曾', '朱', '权',
+    '李', '杜', '杨', '杭', '林', '柏', '柯', '柳', '柴', '栾', '桂', '桑',
+    '梁', '梅', '楚', '樊', '欧', '武', '段', '殷', '毕', '毛', '水', '江',
+    '池', '汤', '汪', '沈', '沙', '法', '洪', '浦', '海', '涂', '温', '滕',
+    '满', '潘', '焦', '熊', '牛', '牟', '狄', '王', '班', '琴', '甘', '田',
+    '申', '白', '皮', '盛', '石', '祁', '福', '秦', '程', '穆', '窦', '童',
+    '符', '简', '管', '籍', '米', '索', '纪', '罗', '翁', '翟', '耿', '胡',
+    '舒', '艾', '芮', '花', '苍', '苏', '苗', '范', '荆', '荣', '莫', '萧',
+    '葛', '董', '蒋', '蒯', '蒲', '蓟', '蓬', '蔡', '蔺', '薛', '衡', '袁',
+    '裘', '裴', '褚', '许', '谢', '谭', '谷', '贡', '费', '贺', '贾', '赖',
+    '赵', '路', '车', '边', '连', '迟', '逯', '邓', '那', '邬', '邱', '邵',
+    '邹', '郎', '郑', '郝', '郭', '鄂', '金', '钟', '钱', '闵', '闻', '阎',
+    '阚', '阮', '陆', '陈', '陶', '雷', '霍', '靳', '鞠', '韦', '韩', '韶',
+    '项', '顾', '颜', '饶', '马', '骆', '高', '魏', '鲁', '鲍', '麦', '麻',
+    '黄', '黎', '齐', '龙', '龚', '万俟', '上官', '东方', '公孙', '单于',
+    '南宫', '司徒', '司空', '司马', '呼延', '夏侯', '太叔', '太史', '宇文', '完颜',
+    '尉迟', '慕容', '拓跋', '欧阳', '濮阳', '申屠', '皇甫', '端木', '诸葛', '闻人',
+    '闾丘', '鲜于'
+]
+surnames = set_and_sort(surnames)
+
+single_given = [
+    '丹', '丽', '书', '亮', '伟', '佳', '倩', '军', '凯', '刚',
+    '勇', '可', '哲', '嘉', '墨', '娜', '娟', '宇', '岚', '岫',
+    '峰', '川', '平', '强', '彤', '慧', '成', '敏', '斌', '旭',
+    '昊', '明', '晨', '朗', '杰', '梅', '欣', '泽', '洁', '洋',
+    '浩', '涛', '涵', '渊', '瀚', '然', '熙', '玲', '珂', '珩',
+    '琳', '瑜', '瑞', '瑾', '睿', '砚', '磊', '礼', '禾', '秀',
+    '红', '艳', '芳', '萱', '诺', '谦', '超', '轩', '辰', '逸',
+    '鑫', '铭', '阳', '雨', '霆', '霞', '静', '飞', '鹏'
+]
+single_given = set_and_sort(single_given)
+
+double_given = [
+    '梦涵', '欣妍', '艺萱', '雨晨', '婉仪', '语桐', '子涵', '语萱', '俊熙', '俊豪',
+    '梓豪', '静怡', '承宇', '子豪', '子昂', '嘉怡', '梓涵', '俊辉', '明远', '宇澄',
+    '雨桐', '梓航', '嘉琪', '思远', '雨薇', '启铭', '子轩', '语馨', '景明', '思琪',
+    '俊彦', '诗涵', '景辉', '雨泽', '子墨', '诗雨', '雨欣', '佳琪', '俊宇', '嘉豪',
+    '宇轩', '梓洋', '诗琪', '逸晨', '逸飞', '若曦', '婉清', '雨萌', '嘉睿', '景行',
+    '书瑶', '承泽', '梓晨', '书恒', '弘毅', '欣怡', '梓萱', '逸轩', '浩宇', '若涵',
+    '雨菲', '子睿', '浩然', '梦琪', '明轩', '宇辰', '诗雅', '清瑶', '梓睿', '书涵',
+    '语涵', '思涵', '宇恒'
+]
+double_given = set(double_given)
+
+generated_double = set()
+for i in single_given:
+    for j in single_given:
+        if i != j:
+            generated_double.add(i + j)
+
+all_double = list(double_given) + list(generated_double)
+
+# 生成 SQL
+sql = f"""-- fake中文姓名(Python 生成,去重+扩展)
+CREATE OR REPLACE FUNCTION name_cn()
+RETURNS TEXT AS $$
+DECLARE
+    surnames TEXT[] := {format_sql(surnames)};
+
+    single_given TEXT[] := {format_sql(single_given)};
+
+    double_given TEXT[] := {format_sql(all_double)};
+
+    surname_count INT := array_length(surnames, 1);
+    single_count INT := array_length(single_given, 1);
+    double_count INT := array_length(double_given, 1);
+    surname TEXT;
+    given_name TEXT;
+BEGIN
+    surname := surnames[1 + floor(random() * surname_count)::int];
+
+    IF random() < 0.8 THEN
+        given_name := double_given[1 + floor(random() * double_count)::int];
+    ELSE
+        given_name := single_given[1 + floor(random() * single_count)::int];
+    END IF;
+
+    RETURN surname || given_name;
+END;
+$$ LANGUAGE plpgsql;
+"""
+
+with open("name-fake.sql", "w", encoding="utf-8") as f:
+    f.write(sql)

@@ -1,0 +1,15 @@
+[project]
+name = "pg-faker"
+version = "1.0.0"
+description = "A fake data generator for PostgreSQL"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.2",
+]
+
+[tool.ruff]
+line-length = 120
