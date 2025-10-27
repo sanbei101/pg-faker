@@ -1,26 +1,4 @@
-from typing import List
-def set_and_sort(arr: list[str]) -> list[str]:
-    arr_set = set(arr)
-    # 先按长度排序,长度相同的按字母排序
-    arr = sorted(arr_set, key=lambda x: (len(x), x))
-    return arr
-
-def format_sql(arr: List[str], indent="        "):
-    """将 Python 列表格式化为 SQL ARRAY 字面量"""
-    arr = list(arr)
-    if not arr:
-        return "ARRAY[]"
-    
-    lines = []
-    line = indent + "'{}'".format(arr[0])
-    for name in arr[1:]:
-        if len(line) + len(name) + 4 > 60:
-            lines.append(line + ",")
-            line = indent + "'{}'".format(name)
-        else:
-            line += ", '{}'".format(name)
-    lines.append(line)
-    return "ARRAY[\n" + "\n".join(lines) + "\n    ]"
+from utils import set_and_sort, format_array_sql
 
 surnames = [
     '丁', '万', '丛', '乌', '乐', '乔', '于', '任', '何', '余', '侯', '倪',
@@ -85,15 +63,15 @@ for i in single_given:
 all_double = list(double_given) + list(generated_double)
 
 # 生成 SQL
-sql = f"""-- fake中文姓名(Python 生成,去重+扩展)
+sql = f"""-- fake中文姓名(Python 自动生成)
 CREATE OR REPLACE FUNCTION name_cn()
 RETURNS TEXT AS $$
 DECLARE
-    surnames TEXT[] := {format_sql(surnames)};
+    surnames TEXT[] := {format_array_sql(surnames)};
 
-    single_given TEXT[] := {format_sql(single_given)};
+    single_given TEXT[] := {format_array_sql(single_given)};
 
-    double_given TEXT[] := {format_sql(all_double)};
+    double_given TEXT[] := {format_array_sql(all_double)};
 
     surname_count INT := array_length(surnames, 1);
     single_count INT := array_length(single_given, 1);
