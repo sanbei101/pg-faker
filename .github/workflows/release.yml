@@ -25,12 +25,12 @@ jobs:
     
     - name: generate sql
       run: |
-        uv run python *-fake.py
+        uv run python fake.py
 
     - name: upload release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: sql
         files: |
-          *-fake.sql
+          *.sql
         make_latest: true

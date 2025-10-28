@@ -1,1 +1,5 @@
-*-fake.sql
+*.sql
+__pycache__/
+.venv/
+Makefile
+fake.control

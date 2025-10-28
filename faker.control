@@ -1,5 +1,0 @@
-comment = 'A fake data generator for PostgreSQL'
-default_version = '1.0'
-module_pathname = ''
-relocatable = true
-schema = faker
