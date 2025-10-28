@@ -41,7 +41,7 @@ default_version = '{version}'
 relocatable = false
 schema = fake"""
 
-with open("fake.control", "w") as f:
+with open("extension/fake.control", "w") as f:
     f.write(fake_control)
 
 # 生成 Makefile 文件
@@ -54,7 +54,7 @@ with open("Makefile", "w") as f:
     f.write(make_file)
 
 # 生成合并后的 fake.sql 文件
-with open(f"fake--{version}.sql", "w") as f:
+with open(f"extension/fake--{version}.sql", "w") as f:
     f.write(fake_sql)
 
 with open(f"fake-{version}-install.sql", "w") as f:

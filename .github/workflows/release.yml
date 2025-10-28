@@ -61,10 +61,24 @@ jobs:
       run: |
         uv run fake.py
 
+    - name: install build dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y cmake build-essential
+
+    - name: build deb packages
+      run: |
+        cd extension
+        mkdir build
+        cd build
+        cmake ..
+        cpack
+
     - name: upload release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: sql
         files: |
           *.sql
+          extension/build/*.deb
         make_latest: true
