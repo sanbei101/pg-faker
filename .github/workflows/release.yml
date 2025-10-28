@@ -31,13 +31,9 @@ jobs:
         postgres-version: "18"
       id: postgres
 
-    - name: make install
-      run: |
-        sudo make install
-    
     - name: run pg test
       run: |
-        psql ${{ steps.postgres.outputs.connection-uri }} -c "CREATE EXTENSION fake;"
+        psql ${{ steps.postgres.outputs.connection-uri }} -f fake-*-install.sql
         psql ${{ steps.postgres.outputs.connection-uri }} -c "SELECT fake.name_cn();"
 
   release:
