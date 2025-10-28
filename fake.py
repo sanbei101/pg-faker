@@ -20,11 +20,19 @@ sql_files = glob.glob("*-fake.sql")
 sql_files.sort()
 
 fake_sql = ""
+install_sql = """CREATE SCHEMA IF NOT EXISTS fake;
+SET search_path TO fake;\n"""
 for sql_file in sql_files:
     with open(sql_file, "r") as f:
+        content = f.read()
         fake_sql += f"--- 开始文件: {sql_file} ---\n"
-        fake_sql += f.read() + "\n"
+        install_sql += f"--- 开始文件: {sql_file} ---\n"
+        
+        fake_sql += content + "\n"
+        install_sql += content + "\n"
+        
         fake_sql += f"--- 结束文件: {sql_file} ---\n\n"
+        install_sql += f"--- 结束文件: {sql_file} ---\n\n"
 
 version = os.getenv("VERSION", "1.0")
 # 生成 fake.control 文件
@@ -48,3 +56,6 @@ with open("Makefile", "w") as f:
 # 生成合并后的 fake.sql 文件
 with open(f"fake--{version}.sql", "w") as f:
     f.write(fake_sql)
+
+with open(f"fake-{version}-install.sql", "w") as f:
+    f.write(install_sql)
