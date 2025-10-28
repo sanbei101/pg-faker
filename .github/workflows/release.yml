@@ -8,6 +8,38 @@ permissions:
   contents: write
 
 jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v5
+
+    - name: set up python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+
+    - uses: astral-sh/setup-uv@v7
+
+    - name: generate sql
+      run: |
+        uv run fake.py
+
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "18"
+      id: postgres
+
+    - name: make install
+      run: |
+        make install
+    
+    - name: run pg test
+      run: |
+        psql ${{ steps.postgres.outputs.connection-uri }} -c "CREATE EXTENSION fake;"
+        psql ${{ steps.postgres.outputs.connection-uri }} -c "SELECT fake.name_cn();"
+
   build:
     name: generate sql files
     runs-on: ubuntu-latest
@@ -25,7 +57,7 @@ jobs:
     
     - name: generate sql
       run: |
-        uv run python fake.py
+        uv run fake.py
 
     - name: upload release
       uses: softprops/action-gh-release@v2
