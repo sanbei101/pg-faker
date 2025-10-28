@@ -33,7 +33,7 @@ jobs:
 
     - name: make install
       run: |
-        make install
+        sudo make install
     
     - name: run pg test
       run: |
