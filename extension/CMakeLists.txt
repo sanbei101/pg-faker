@@ -11,6 +11,9 @@ install(FILES fake.control fake--1.0.sql
         DESTINATION /usr/share/postgresql/18/extension
         COMPONENT postgresql-18)
 
+set(CPACK_PACKAGE_CONTACT "sanbei101 <sanbei101@outlook.com>")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "sanbei101 <sanbei101@outlook.com>")
+
 set(CPACK_COMPONENT_POSTGRESQL-17_DISPLAY_NAME "PostgreSQL 17 Fake Extension")
 set(CPACK_COMPONENT_POSTGRESQL-17_DESCRIPTION "Fake data generator for PostgreSQL 17")
 set(CPACK_DEBIAN_POSTGRESQL-17_PACKAGE_NAME "postgresql-17-fake-extension")
