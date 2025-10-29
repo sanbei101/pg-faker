@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(fake-extension)
+project(fake-extension VERSION 1.0.0)
 
 # PostgreSQL 17 包
 install(FILES fake.control fake--1.0.sql
