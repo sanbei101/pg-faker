@@ -33,7 +33,7 @@ jobs:
 
     - name: run pg test
       run: |
-        psql ${{ steps.postgres.outputs.connection-uri }} -f fake-*-install.sql
+        psql ${{ steps.postgres.outputs.connection-uri }} -f dist/fake-*-install.sql
         psql ${{ steps.postgres.outputs.connection-uri }} -c "SELECT fake.name_cn();"
 
   release:

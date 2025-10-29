@@ -42,21 +42,12 @@ default_version = '{version}'
 relocatable = false
 schema = fake"""
 
+# 生成postgresql拓展所需的文件
 with open("extension/fake.control", "w") as f:
     f.write(fake_control)
-
-# 生成 Makefile 文件
-make_file = f"""EXTENSION = fake
-DATA = fake--{version}.sql
-PGXS := $(shell pg_config --pgxs)
-include $(PGXS)"""
-
-with open("Makefile", "w") as f:
-    f.write(make_file)
-
-# 生成合并后的 fake.sql 文件
 with open(f"extension/fake--{version}.sql", "w") as f:
     f.write(fake_sql)
 
+# 生成直接安装SQL文件
 with open(f"dist/fake-{version}-install.sql", "w") as f:
     f.write(install_sql)
