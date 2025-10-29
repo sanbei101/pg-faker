@@ -1,0 +1,41 @@
+import utils
+first_names = [
+    'amy', 'ava', 'jay', 'leo', 'max', 'mia', 'sam', 'adam',
+    'alex', 'emma', 'evie', 'isla', 'jack', 'john', 'liam',
+    'lily', 'lisa', 'luke', 'mark', 'mary', 'noah', 'owen',
+    'paul', 'ruby', 'ruth', 'ryan', 'aaron', 'aiden',
+    'alfie', 'alice', 'betty', 'brian', 'carol', 'daisy',
+    'david', 'donna', 'emily', 'ethan', 'freya', 'grace',
+    'harry', 'helen', 'henry', 'isaac', 'jacob', 'james',
+    'jason', 'karen', 'kevin', 'laura', 'lewis', 'linda',
+    'lucas', 'mason', 'nancy', 'oscar', 'poppy', 'sarah',
+    'susan', 'teddy', 'tommy', 'amelia', 'andrew', 'angela',
+    'archie', 'arthur', 'ashley', 'brenda', 'daniel',
+    'donald', 'edward', 'elijah', 'evelyn', 'finley',
+    'george', 'jayden', 'joseph', 'joshua', 'millie',
+    'oliver', 'olivia', 'robert', 'ronald', 'sandra',
+    'sharon', 'sophia', 'sophie', 'steven', 'thomas',
+    'anthony', 'barbara', 'charles', 'charlie', 'deborah',
+    'dorothy', 'freddie', 'jeffrey', 'jessica', 'kenneth',
+    'madison', 'matthew', 'michael', 'richard', 'timothy',
+    'william', 'benjamin', 'isabella', 'jennifer',
+    'kimberly', 'michelle', 'muhammad', 'patricia',
+    'samantha', 'alexander', 'catherine', 'charlotte',
+    'elizabeth', 'sebastian', 'christopher'
+]
+last_names = [
+    'he', 'hu', 'li', 'ma', 'wu', 'xu', 'cao', 'gao', 'guo',
+    'han', 'lee', 'lin', 'liu', 'luo', 'sun', 'xie', 'zhu',
+    'chen', 'deng', 'feng', 'hall', 'hill', 'king', 'peng',
+    'song', 'tang', 'wang', 'yang', 'zhao', 'zhou', 'adams',
+    'allen', 'baker', 'brown', 'clark', 'davis', 'green',
+    'huang', 'jones', 'lewis', 'liang', 'lopez', 'moore',
+    'perez', 'scott', 'smith', 'white', 'young', 'zhang',
+    'zheng', 'carter', 'flores', 'garcia', 'harris',
+    'martin', 'miller', 'nelson', 'nguyen', 'rivera',
+    'taylor', 'thomas', 'torres', 'walker', 'wilson',
+    'wright', 'jackson', 'johnson', 'ramirez', 'roberts',
+    'sanchez', 'anderson', 'campbell', 'gonzalez',
+    'martinez', 'mitchell', 'robinson', 'thompson',
+    'williams', 'hernandez', 'rodriguez'
+]
