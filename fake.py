@@ -17,13 +17,17 @@ for script in py_scripts:
 
 print("\n✅所有脚本执行完毕,开始合并 SQL 文件...\n")
 
-sql_files = glob.glob("*-fake.sql")
+sql_files = glob.glob("dist/*-fake.sql")
+if len(sql_files) == 0:
+    print("❌没有找到任何 SQL 文件")
+    sys.exit(1)
 sql_files.sort()
 
 fake_sql = ""
 install_sql = """CREATE SCHEMA IF NOT EXISTS fake;
 SET search_path TO fake;\n"""
 for sql_file in sql_files:
+    print(f"正在处理 SQL 文件: {sql_file}")
     with open(sql_file, "r") as f:
         content = f.read()
         fake_sql += f"--- 开始文件: {sql_file} ---\n"
