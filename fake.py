@@ -57,5 +57,5 @@ with open("Makefile", "w") as f:
 with open(f"extension/fake--{version}.sql", "w") as f:
     f.write(fake_sql)
 
-with open(f"fake-{version}-install.sql", "w") as f:
+with open(f"dist/fake-{version}-install.sql", "w") as f:
     f.write(install_sql)

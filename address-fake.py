@@ -92,5 +92,5 @@ END;
 $$ LANGUAGE plpgsql;
 """
 
-with open("address-fake.sql", "w") as f:
+with open("dist/address-fake.sql", "w") as f:
     f.write(sql)
