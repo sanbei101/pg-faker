@@ -1,4 +1,3 @@
-import utils
 first_names = [
     'amy', 'ava', 'jay', 'leo', 'max', 'mia', 'sam', 'adam',
     'alex', 'emma', 'evie', 'isla', 'jack', 'john', 'liam',
