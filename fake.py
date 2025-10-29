@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 
+os.makedirs("dist", exist_ok=True)
 py_scripts = glob.glob("*-fake.py")
 py_scripts.sort()
 
