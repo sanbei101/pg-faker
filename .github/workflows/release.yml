@@ -75,6 +75,6 @@ jobs:
       with:
         tag_name: sql
         files: |
-          *.sql
+          dist/*.sql
           extension/build/*.deb
         make_latest: true
