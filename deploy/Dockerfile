@@ -17,5 +17,4 @@ COPY --from=downloader --chmod=755 /tmp/postgrest /postgrest
 COPY postgrest.conf /postgrest.conf
 
 EXPOSE 8080
-ENTRYPOINT ["/postgrest"]
-CMD ["/postgrest.conf"]
+CMD ["/postgrest", "/postgrest.conf"]
