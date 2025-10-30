@@ -5,9 +5,7 @@ on:
     branches: [main]
 
 env:
-  AWS_ACCOUNT_ID: 495547673465
-  AWS_REGION: ap-east-1
-  ECR_REGISTRY: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
+  ECR_REGISTRY: 495547673465.dkr.ecr.ap-east-1.amazonaws.com
   IMAGE_NAME: sanbei/postgrest
 
 jobs:
