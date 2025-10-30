@@ -10,9 +10,11 @@ RUN wget -O /tmp/postgrest.tar.xz "${DOWNLOAD_URL}" && \
 
 FROM gcr.io/distroless/static-debian12:nonroot
 
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.9.1 /lambda-adapter /opt/extensions/lambda-adapter
+ENV PORT=8080 # Port for AWS Lambda Adapter
 COPY --from=downloader /tmp/postgrest /postgrest
 COPY postgrest.conf /postgrest.conf
 
-EXPOSE 3000
+EXPOSE 8080
 ENTRYPOINT ["/postgrest"]
 CMD ["/postgrest.conf"]
