@@ -1,4 +1,4 @@
-name: Build & Push to Public ECR
+name: Build & Push to ECR
 
 on:
   push:
@@ -34,6 +34,7 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          provenance: false
           tags: |
             ${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
