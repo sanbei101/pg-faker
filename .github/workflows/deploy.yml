@@ -7,6 +7,7 @@ on:
 env:
   ECR_REGISTRY: 495547673465.dkr.ecr.ap-east-1.amazonaws.com
   IMAGE_NAME: sanbei/postgrest
+  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build:
