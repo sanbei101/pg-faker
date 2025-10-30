@@ -5,10 +5,10 @@ on:
     branches: [main]
 
 env:
-  REGISTRY: public.ecr.aws
-  REPO_PREFIX: s9l9d5k8
+  AWS_ACCOUNT_ID: 495547673465
+  AWS_REGION: ap-east-1
+  ECR_REGISTRY: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
   IMAGE_NAME: sanbei/postgrest
-  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build:
@@ -20,11 +20,9 @@ jobs:
       - name: Login to Amazon Public ECR
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ${{ env.ECR_REGISTRY }}
           username: ${{ secrets.AWS_ACCESS_KEY_ID }}
           password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        env:
-          AWS_REGION: us-east-1   # 公有 ECR 只在美国东区有入口,这里必须写 us-east-1
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
