@@ -13,7 +13,7 @@ FROM gcr.io/distroless/static-debian12:nonroot
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.9.1 /lambda-adapter /opt/extensions/lambda-adapter
 # Port for AWS Lambda Adapter
 ENV PORT=8080
-COPY --from=downloader /tmp/postgrest /postgrest
+COPY --from=downloader --chmod=755 /tmp/postgrest /postgrest
 COPY postgrest.conf /postgrest.conf
 
 EXPOSE 8080
